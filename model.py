@@ -22,7 +22,7 @@ class CRF(nn.Module):
         self.transitions = nn.Parameter(torch.randn(n_labels, n_labels))
 
     def reset_parameters(self):
-        I.normal(self.transitions.data, 0, 1)
+        I.normal_(self.transitions.data, 0, 1)
 
     def forward(self, logits, lens):
         """
@@ -182,10 +182,10 @@ class LSTMCRF(nn.Module):
 
     def reset_parameters(self):
         for emb in self.embeddings:
-            I.xavier_normal(emb.weight.data)
+            I.xavier_normal_(emb.weight.data)
 
-        I.xavier_normal(self.input_layer.weight.data)
-        I.xavier_normal(self.output_layer.weight.data)
+        I.xavier_normal_(self.input_layer.weight.data)
+        I.xavier_normal_(self.output_layer.weight.data)
         self.crf.reset_parameters()
         self.lstm.reset_parameters()
 
