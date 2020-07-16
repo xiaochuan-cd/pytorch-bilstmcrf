@@ -53,7 +53,6 @@ class MultiSentWordDataLoader(D.DataLoader):
         self.vocabs = vocabs
 
     def unlexicalize(self, sent, vocab):
-        print(f'unlexicalize sent: {sent}')
         return [vocab.f2i[w] if w in vocab else vocab.f2i["<unk>"]
                 for w in sent]
 
