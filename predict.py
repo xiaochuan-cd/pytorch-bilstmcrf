@@ -82,42 +82,8 @@ group.add("--bidirectional", action="store_true", default=False,
           help="Whether lstm cells are bidirectional.")
 
 
-def check_arguments(args):
-    num_inputs = len(args.input_path)
-
-    assert num_inputs > 0, \
-        "At least one input file must be specified."
-
-    defaults = {
-        "wordembed-type": "none",
-        "wordembed-path": None,
-        "wordembed-freeze": False,
-        "word-dim": 300,
-    }
-
-    # default values for list type arguments
-    for attr, default in defaults.items():
-        attr_name = attr.replace("-", "_")
-        if getattr(args, attr_name) is None:
-            setattr(args, attr_name, [default] * num_inputs)
-
-    # check if input counts are correct
-    for attr in defaults:
-        attr_name = attr.replace("-", "_")
-        assert len(getattr(args, attr_name)) == num_inputs, \
-            f"--{attr} must be specified as many as inputs. " \
-            f"specified: {len(getattr(args, attr_name))}, required: {num_inputs}"
-
-    assert 0.0 < args.val_ratio < 1.0, \
-        "Specify a valid validation ratio."
-
-    # ensure that the save-dir exists
-    os.makedirs(args.save_dir, exist_ok=True)
-
-
 def main(args):
     logging.basicConfig(level=logging.INFO)
-    check_arguments(args)
 
     label_vocab = pickle.load(os.path.join(args.save_dir, f"vocab-input.pkl"))
     input_vocabs = pickle.load(os.path.join(args.save_dir, f"vocab-label.pkl"))
