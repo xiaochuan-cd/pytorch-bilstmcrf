@@ -98,6 +98,7 @@ def main(args):
 
     checkpoint = torch.load(os.path.join(args.save_dir, "model"))
     model.load_state_dict(checkpoint)
+    model.train(False)
 
     print('finish!')
 
