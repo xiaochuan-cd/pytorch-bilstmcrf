@@ -77,8 +77,8 @@ group.add("--bidirectional", action="store_true", default=False,
 def main(args):
     logging.basicConfig(level=logging.INFO)
 
-    label_vocab = pickle.load(open(os.path.join(args.save_dir, "vocab-input.pkl"), 'rb'))
-    input_vocabs = [pickle.load(open(os.path.join(args.save_dir, "vocab-label.pkl"), 'rb'))]
+    label_vocab = pickle.load(open(os.path.join(args.save_dir, "vocab-label.pkl"), 'rb'))
+    input_vocabs = [pickle.load(open(os.path.join(args.save_dir, "vocab-input.pkl"), 'rb'))]
 
     logging.info("Initializing model...")
     crf = M.CRF(len(label_vocab))
