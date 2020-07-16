@@ -27,14 +27,6 @@ parser = yaap.ArgParser(
 )
 
 group = parser.add_group("Basic Options")
-group.add("--input-path", type=yaap.path, action="append", required=True,
-          help="Path to input file that contains sequences of tokens "
-               "separated by spaces.")
-group.add("--label-path", type=yaap.path, required=True,
-          help="Path to label file that contains sequences of token "
-               "labels separated by spaces. Note that the number of "
-               "tokens in each sequence must be equal to that of the "
-               "corresponding input sequence.")
 group.add("--save-dir", type=yaap.path, required=True,
           help="Directory to save outputs (checkpoints, vocabs, etc.)")
 group.add("--gpu", type=int, action="append",
