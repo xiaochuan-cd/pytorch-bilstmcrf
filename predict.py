@@ -96,7 +96,7 @@ def main(args):
         word_dims=args.word_dim,
         hidden_dim=args.lstm_dim,
         layers=args.lstm_layers,
-        dropout_prob=args.dropout_prob,
+        dropout_prob=0,
         bidirectional=args.bidirectional
     )
     model.reset_parameters()
