@@ -297,7 +297,7 @@ def sequence_mask(lens, max_len=None):
     batch_size = lens.size(0)
 
     if max_len is None:
-        max_len = lens.max().data[0]
+        max_len = lens.max().data.item()
 
     ranges = torch.arange(0, max_len).long()
     ranges = ranges.unsqueeze(0).expand(batch_size, max_len)
