@@ -105,7 +105,7 @@ def main(args):
         model = model.cuda(gpu_main)
 
     checkpoint = torch.load(os.path.join(args.save_dir, "model"))
-    model.load_state_dict(checkpoint['model'])
+    model.load_state_dict(checkpoint)
 
     print('finish!')
 
